@@ -1,3 +1,15 @@
 /demo
 /librarian/connection.php
 /student/connection.php
+/librarian/books_image
+/librarian/.idea
+/librarian/images
+/student/images
+/librarian/css
+/student/css
+/librarian/login.html
+/librarian/plain_page.html
+/librarian/registration.html
+/student/login.html
+/student/plain_page.html
+/student/registration.html
