@@ -1,9 +1,13 @@
 /demo
+/librarian/less
+/librarian/scss
 /librarian/connection.php
 /student/connection.php
 /librarian/books_image
 /librarian/.idea
 /librarian/images
+/student/less
+/student/scss
 /student/images
 /librarian/css
 /student/css
