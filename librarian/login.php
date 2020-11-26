@@ -26,7 +26,6 @@ include "connection.php";
 
 <br>
 
-
 <br>
 
 <body class="login">
@@ -54,6 +53,7 @@ include "connection.php";
         </div>
         <div>
           <input class="button-submit" type="submit" name="submit1" value="Log in">
+          <input class="button-submit" style="margin-top: 0px;" type="submit" name="submit2" value="Log in as Demo user">
         </div>
 
         <div class="clearfix"></div>
@@ -66,6 +66,28 @@ include "connection.php";
   </div>
 
   <?php
+  if (isset($_POST["submit2"])) {
+    $count = 0;
+    $res = mysqli_query($link, "SELECT password FROM librarian_registration WHERE username='demouser'");
+    $row = mysqli_fetch_array($res);
+    if (password_verify($demopass, $row['password'])) {
+      $count = 1;
+    } 
+    if ($count == 0) {
+        ?>
+            <div class="alert alert-danger">
+              <strong style="color:white">Invalid</strong> Username Or Password.
+            </div>
+          <?php
+          } else {
+            $_SESSION["librarian"] = $_POST["username"];
+          ?>
+            <script type="text/javascript">
+              window.location = "display_books.php";
+            </script>
+        <?php
+          }
+        }
   if (isset($_POST["submit1"])) {
     $count = 0;
     $res = mysqli_query($link, "SELECT password FROM librarian_registration WHERE username='$_POST[username]'");
@@ -73,7 +95,6 @@ include "connection.php";
     if (password_verify($_POST['password'], $row['password'])) {
       $count = 1;
     }
-
     if ($count == 0) {
   ?>
       <div class="alert alert-danger">
@@ -91,9 +112,5 @@ include "connection.php";
   }
   ?>
 
-
-
-
 </body>
-
 </html>

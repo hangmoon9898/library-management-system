@@ -39,7 +39,7 @@ if (!isset($_SESSION["librarian"]))
                             <form name="form1" action="" method="post">
                               
                                  <div class="wrapper">
-                                    <select name="enr" class="form-control reg-field" style="display: inline-block;">
+                                    <select name="enr" class="form-control reg-field" style="display: inline-block; padding: 0 0 0 10px; ">
                                       <?php
                                         $res=mysqli_query($link, "SELECT enrollment FROM student_registration");
                                         while ($row=mysqli_fetch_array($res))
@@ -100,7 +100,7 @@ if (!isset($_SESSION["librarian"]))
 
                                   
                                     
-                                        <select name="booksname" class="form-control reg-field selectpicker">
+                                        <select name="booksname" class="form-control reg-field selectpicker" style = "padding: 0 0 0 10px;"> 
                                           <?php
                                             $res=mysqli_query($link, "SELECT books_name FROM add_books");
                                             while ($row=mysqli_fetch_array($res))

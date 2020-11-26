@@ -80,11 +80,17 @@
                                       <script language="javascript">
                                         function deleteme(a)
                                         {
+                                          <?php $demo = mysqli_query($link, "SELECT id from librarian_registration WHERE username='" . $_SESSION["librarian"] . "'");
+                                          if ($demo = 22) 
+                                          {?>
+                                            alert("You cannot perform this action as a demo user");
+                                          <?php } else {?>
                                           if(confirm("Are you sure you want to delete this book?"))
                                           {
                                             window.location.href="delete_books.php?id=<?php echo $row["id"]; ?>";
                                             return true;
-                                          }
+                                          } 
+                                        <?php }?>
                                         }
                                       </script>
 
@@ -124,14 +130,20 @@
                                       <script language="javascript">
                                         function deleteme(a)
                                         {
-                                          if(confirm("Are you sure you want to delete this book?"))
-                                          {
-                                            window.location.href="delete_books.php?id=<?php echo $row["id"]; ?>";
-                                            return true;
-                                          }
-                                        }
+                                          <?php $demo = mysqli_query($link, "SELECT id from librarian_registration WHERE username='" . $_SESSION["librarian"] . "'");
+                                          if ($demo = 22) 
+                                          {?>
+                                            alert("You cannot perform this action as a demo user");
+                                            window.location.href="display_books.php";
+                                          <?php } else {?>
+                                            if(confirm("Are you sure you want to delete this book?"))
+                                            { 
+                                              window.location.href="delete_books.php?id=<?php echo $row["id"]; ?>";
+                                              return true;
+                                            } <?php } ?>
+                                          }                                                                 
                                       </script>
-                                      <?php                                                    echo "</td>";
+                                      <?php echo "</td>";
                                       echo "</tr>";
                                     }
                                       echo "</table>";

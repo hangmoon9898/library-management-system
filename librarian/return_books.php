@@ -39,7 +39,7 @@ if (!isset($_SESSION["librarian"]))
                         <form name="form1" action="" method="post">
                          
                             <div class="wrapper" style="margin-bottom: 30px;">
-                            <select name="enr" class="form-control reg-field" style="display: inline-block;">
+                            <select name="enr" class="form-control reg-field" style="display: inline-block; padding: 0 0 0 10px;">
                                 <?php
                                   $res=mysqli_query($link,"SELECT student_enrollment FROM issue_books WHERE books_return_date=''");
                                   while ($row=mysqli_fetch_array($res))
