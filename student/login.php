@@ -29,8 +29,6 @@ include "connection.php";
 <br>
 
 <body class="login">
-
-
     <div class="login_wrapper login_only">
         <div class="text-center form-heading heading-space">
             <h1>Hamoli</h1>
@@ -40,37 +38,54 @@ include "connection.php";
                 <div class="user-icon">
                     <img src="images/user-icon.png" alt="admin-icon" height="80px" width="60px">
                 </div>
-
                 <div class="input-container">
                     <i class="fas fa-user icon"></i>
-                    <input type="text" name="username" class="input-field" placeholder="Username" required="" />
+                    <input type="text" name="username" class="input-field" placeholder="Username" />
                 </div>
                 <div class="input-container">
                     <i class="fas fa-lock icon"></i>
-                    <input type="password" name="password" class="input-field" placeholder="Password" required="" />
+                    <input type="password" name="password" class="input-field" placeholder="Password" />
                 </div>
                 <div>
                     <input class="button-submit" type="submit" name="submit1" value="Log in">
+                    <input class="button-submit" style="margin-top: -10px;" type="submit" name="submit2" value="Log in as demo user">
                 </div>
-
-
                 <div class="clearfix"></div>
-
                 <div class="separator">
                     <p class="change_link">New to site?
                         <a href="registration.php"> Create Account </a>
                     </p>
-
                     <div class="clearfix"></div>
                     <br />
-
-
                 </div>
             </form>
         </section>
     </div>
 
     <?php
+     if (isset($_POST["submit2"])) {
+        $count = 0;
+        $res = mysqli_query($link, "SELECT password FROM student_registration WHERE username='demouser' && status ='yes'");
+        $row = mysqli_fetch_array($res);
+        if (password_verify($demopass, $row['password'])) {
+            $count = 1;
+        }
+        if ($count == 0) {
+    ?>
+            <div class="alert alert-danger">
+                <strong style="color:white">Invalid</strong> Username Or Password.
+            </div>
+        <?php
+        } else {
+            $_SESSION["username"] = 'demouser';
+        ?>
+            <script type="text/javascript">
+                window.location = "my_issued_books.php";
+            </script>
+    <?php
+        }
+    }
+
     if (isset($_POST["submit1"])) {
         $count = 0;
         $res = mysqli_query($link, "SELECT password FROM student_registration WHERE username='$_POST[username]' && status ='yes'");
@@ -78,7 +93,6 @@ include "connection.php";
         if (password_verify($_POST['password'], $row['password'])) {
             $count = 1;
         }
-
         if ($count == 0) {
     ?>
             <div class="alert alert-danger">
@@ -87,7 +101,6 @@ include "connection.php";
         <?php
         } else {
             $_SESSION["username"] = $_POST["username"];
-
         ?>
             <script type="text/javascript">
                 window.location = "my_issued_books.php";
@@ -96,10 +109,5 @@ include "connection.php";
         }
     }
     ?>
-
-
-
-
 </body>
-
 </html>

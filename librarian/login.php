@@ -45,15 +45,15 @@ include "connection.php";
 
         <div class="input-container">
           <i class="fas fa-user icon"></i>
-          <input type="text" name="username" class="input-field" placeholder="Username" required="" />
+          <input type="text" name="username" class="input-field" placeholder="Username" />
         </div>
         <div class="input-container">
           <i class="fas fa-lock icon"></i>
-          <input type="password" name="password" class="input-field" placeholder="Password" required="" />
+          <input type="password" name="password" class="input-field" placeholder="Password" />
         </div>
         <div>
           <input class="button-submit" type="submit" name="submit1" value="Log in">
-          <input class="button-submit" style="margin-top: 0px;" type="submit" name="submit2" value="Log in as Demo user">
+          <input class="button-submit" style="margin-top: -10px;" type="submit" name="submit2" value="Log in as Demo user">
         </div>
 
         <div class="clearfix"></div>
@@ -80,7 +80,7 @@ include "connection.php";
             </div>
           <?php
           } else {
-            $_SESSION["librarian"] = $_POST["username"];
+            $_SESSION["librarian"] = 'demouser';
           ?>
             <script type="text/javascript">
               window.location = "display_books.php";
