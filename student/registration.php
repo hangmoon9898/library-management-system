@@ -22,11 +22,7 @@ include "connection.php";
 
 <br>
 
-
-
 <body class="login" style="margin-top: -20px;">
-
-
 
     <div class="login_wrapper reg_wrapper">
         <div class="text-center form-heading" style="margin-top: 0;">
@@ -44,7 +40,6 @@ include "connection.php";
                 <div>
                     <input type="text" class="reg-field" placeholder="Last Name" name="lastname" required="" />
                 </div>
-
                 <div>
                     <input type="text" class="reg-field" placeholder="Username" name="username" required="" />
                 </div>
@@ -63,27 +58,31 @@ include "connection.php";
                 <div>
                     <input class="button-submit" type="submit" name="submit1" value="Register">
                 </div>
-
-
-
             </form>
         </section>
 
         <?php
-        if (isset($_POST["submit1"])) {
-            $epass = password_hash($_POST["password"], PASSWORD_DEFAULT);
-            mysqli_query($link, "INSERT INTO student_registration VALUES('','$_POST[firstname]','$_POST[lastname]','$_POST[username]','$epass','$_POST[email]','$_POST[contact]','', '$_POST[enrollmentno]','no')");
-        ?>
-            <div class="alert alert-success col-lg-12" style="text-align: center;">
+        if (isset($_POST["submit1"])) { ?>
+            <script>
+                alert("Sorry, the demo application doesn't allow new registration.");
+                window.location = "login.php";
+            </script>
+            <?php
+            // The code below works perfectly fine for registering a new account in a normal application.
+            // Registering code starts here -----------------------------------------------------------
+            /* $epass = password_hash($_POST["password"], PASSWORD_DEFAULT);
+            mysqli_query($link, "INSERT INTO student_registration VALUES('','$_POST[firstname]','$_POST[lastname]','$_POST[username]','$epass','$_POST[email]','$_POST[contact]','', '$_POST[enrollmentno]','no')"); */
+            ?>
+            <!--<div class="alert alert-success col-lg-12" style="text-align: center;">
                 Registration successful! You will get an email when your account is approved.
                 <br>
-                Go back to <a href="https://lehang.pw/library/container/student/login.php">Login</a>
+                Go back to <a href="/login.php">Login</a>
             </div>
+            // Registering code ends here ---------------------------------------------------------------
+            -->
         <?php
         }
         ?>
-
     </div>
 </body>
-
 </html>
